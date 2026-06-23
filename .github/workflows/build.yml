@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.4.0  # ✅ Actualizado de v4.2.0
+        uses: actions/checkout@v4  # ✅ Usar v4 (última disponible)
 
       - name: Set up Python
-        uses: actions/setup-python@v5.2.0  # ✅ Actualizado de v5.1.0
+        uses: actions/setup-python@v6  # ✅ Usar v6 (con soporte Node.js 24)
         with:
           python-version: "3.11"
 
@@ -43,7 +43,7 @@ jobs:
         run: |
           buildozer android debug 2>&1 | tee build.log
 
-      - name: Check for APK files  # ✅ NUEVO: Diagnosticar dónde están los APKs
+      - name: Check for APK files
         run: |
           echo "Contents of bin directory:"
           ls -la bin/ || echo "bin directory does not exist"
@@ -52,14 +52,14 @@ jobs:
 
       - name: Upload APK
         if: success()
-        uses: actions/upload-artifact@v4.4.0  # ✅ Actualizado de v4.3.0
+        uses: actions/upload-artifact@v4  # ✅ Usar v4 (última disponible)
         with:
           name: apk
           path: bin/*.apk
 
       - name: Upload Build Logs
         if: always()
-        uses: actions/upload-artifact@v4.4.0  # ✅ Actualizado de v4.3.0
+        uses: actions/upload-artifact@v4  # ✅ Usar v4 (última disponible)
         with:
           name: build-logs
           path: build.log
