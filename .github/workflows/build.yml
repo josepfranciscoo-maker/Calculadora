@@ -13,62 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Build APK with Buildozer
+        uses: oscpu/buildozer-action@master
         with:
-          python-version: "3.11"
-
-      - name: Install Android Build Dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y \
-            git zip unzip openjdk-17-jdk \
-            autoconf automake libtool m4 \
-            pkg-config \
-            zlib1g-dev libncurses5-dev libgdbm-dev \
-            libssl-dev libffi-dev libsqlite3-dev \
-            tk-dev libgdbm-compat-dev \
-            libreadline-dev liblzma-dev \
-            cmake ninja-build
-
-      - name: Install Buildozer and Dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install buildozer cython virtualenv pycparser
-
-      - name: Set up Android SDK and NDK
-        run: |
-          mkdir -p ~/android-sdk
-          cd ~/android-sdk
-          
-          # Download Command Line Tools
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11254119_latest.zip
-          unzip -q commandlinetools-linux-11254119_latest.zip
-          mkdir -p cmdline-tools/latest
-          mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || true
-          
-          # Set environment variables
-          export ANDROID_SDK_ROOT=~/android-sdk
-          export ANDROID_HOME=~/android-sdk
-          export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
-          
-          # Accept licenses
-          yes | sdkmanager --licenses
-          
-          # Install required SDK tools
-          sdkmanager "platforms;android-34"
-          sdkmanager "build-tools;34.0.0"
-          sdkmanager "ndk;25.2.9519653"
-
-      - name: Create Buildozer Config Cache Directory
-        run: mkdir -p ~/.buildozer
-
-      - name: Build APK
-        env:
-          ANDROID_SDK_ROOT: ~/android-sdk
-          ANDROID_HOME: ~/android-sdk
-        run: |
-          buildozer android debug 2>&1 | tee build.log
+          specfile: buildozer.spec
 
       - name: Check for APK files
         run: |
