@@ -91,16 +91,18 @@ android.ndk_api = 21
 android.private_storage = True
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
-android.ndk_path = ~/android-sdk/ndk/25.2.9519653
+# ✅ COMENTADO: GitHub Actions descargará automáticamente
+#android.ndk_path = ~/android-sdk/ndk/25.2.9519653
 
 # (str) Android SDK directory (if empty, it will be automatically downloaded.)
-android.sdk_path = ~/android-sdk
+# ✅ COMENTADO: GitHub Actions descargará automáticamente
+#android.sdk_path = ~/android-sdk
 
 # (bool) If True, then automatically accept SDK license
 android.accept_sdk_license = True
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 
 # (bool) enables Android auto backup feature (Android API >=23)
 android.allow_backup = True
@@ -145,4 +147,4 @@ ios.codesign.allowed = false
 log_level = 2
 
 # (int) Display warning if buildozer is run as root (0 = False, 1 = True)
-warn_on_root = 1
+warn_on_root = 0
