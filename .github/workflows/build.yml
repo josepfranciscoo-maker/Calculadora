@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # ✅ Usar v4 (última disponible)
+        uses: actions/checkout@v5  # ✅ Node.js 24 compatible
 
       - name: Set up Python
-        uses: actions/setup-python@v6  # ✅ Usar v6 (con soporte Node.js 24)
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
@@ -52,14 +52,14 @@ jobs:
 
       - name: Upload APK
         if: success()
-        uses: actions/upload-artifact@v4  # ✅ Usar v4 (última disponible)
+        uses: actions/upload-artifact@v5  # ✅ Node.js 24 compatible
         with:
           name: apk
           path: bin/*.apk
 
       - name: Upload Build Logs
         if: always()
-        uses: actions/upload-artifact@v4  # ✅ Usar v4 (última disponible)
+        uses: actions/upload-artifact@v5  # ✅ Node.js 24 compatible
         with:
           name: build-logs
           path: build.log
