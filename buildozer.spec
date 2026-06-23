@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,hostpython3,kivy=2.3.0,pillow
+requirements = python3,hostpython3,kivy=2.3.0,pillow,kivymd
 
 # (str) Presplash of the application
 presplash.filename = %(source.dir)s/calcu.png
@@ -91,12 +91,10 @@ android.ndk_api = 21
 android.private_storage = True
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
-# ✅ COMENTADO: GitHub Actions descargará automáticamente
-#android.ndk_path = ~/android-sdk/ndk/25.2.9519653
+android.ndk_path = 
 
 # (str) Android SDK directory (if empty, it will be automatically downloaded.)
-# ✅ COMENTADO: GitHub Actions descargará automáticamente
-#android.sdk_path = ~/android-sdk
+android.sdk_path = 
 
 # (bool) If True, then automatically accept SDK license
 android.accept_sdk_license = True
