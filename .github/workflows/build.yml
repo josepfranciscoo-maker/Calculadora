@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Install Android Build Dependencies
         run: |
@@ -30,9 +30,6 @@ jobs:
             tk-dev libgdbm-compat-dev \
             libreadline-dev liblzma-dev \
             cmake ninja-build
-          
-          # Rebuild libtool macros
-          sudo libtoolize --force --copy --quiet || true
 
       - name: Install Buildozer and Dependencies
         run: |
